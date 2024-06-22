@@ -27,27 +27,21 @@ class PID(object):
         return output
 
 def test_pid():
-    # Start
     initial_pos = 8
     
-    # Destination
     dest = 250
     
-    # PID parameters
-    K = 1
-    tau_i = 1
-    tau_d = 1
+    K = 2.5
+    tau_i = 5
+    tau_d = 0.8
     
-    # Number of iterations to simulate
     num_iterations = 200
-    
-    # Create a PID controller
+  
     pid = PID(pos=initial_pos, dest = dest, K=K, tau_i=tau_i, tau_d=tau_d)
     
-    # Time interval 
     dt = 0.1
     
-    positions = [initial_pos]
+    positions = []
     
     for _ in range(num_iterations):
         control_output = pid.calculate()

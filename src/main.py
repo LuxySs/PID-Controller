@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 class PID(object):
     def __init__(self, **kwargs):
         self.pos = kwargs["pos"]
@@ -29,41 +31,35 @@ def test_pid():
     initial_pos = 8
     
     # Destination
-    dest = 50.0
+    dest = 250
     
     # PID parameters
-    K = 1.0
-    tau_i = 1.0
-    tau_d = 1.0
+    K = 1
+    tau_i = 1
+    tau_d = 1
     
     # Number of iterations to simulate
-    num_iterations = 50
+    num_iterations = 200
     
     # Create a PID controller
     pid = PID(pos=initial_pos, dest = dest, K=K, tau_i=tau_i, tau_d=tau_d)
     
-    # Time step for each iteration
+    # Time interval 
     dt = 0.1
     
-    # List to store positions for plotting
     positions = [initial_pos]
     
-    # Run the PID control loop
     for _ in range(num_iterations):
-        # Calculate control output
         control_output = pid.calculate()
-        
-        # Update position based on control output
         pid.pos += control_output * dt
-        
-        # Append current position to the list
         positions.append(pid.pos)
     
     return positions
 
 if __name__ == "__main__":
-    # Test the PID controller and print the positions
     positions = test_pid()
+    print(positions)
 
-    for i, pos in enumerate(positions):
-        print(f"Step {i}: Position = {pos}")
+    plt.figure(figsize=(10, 5))
+    plt.plot(positions)
+    plt.show()

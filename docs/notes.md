@@ -34,7 +34,7 @@ Output = K * Error + Reset
 $u(t) = K \times e(t) + \frac{K}{\tau_{d}} \frac{d}{dt}(e(t))$
 But we cannot measure the actual derivative -> we'll use the slope (taux d'accroissement) instead:
 
-Just to convince ourselves that it works:  if the error decreases fast, we must reduce to strength of our output (because fewer error to compensate). But if it increases fast, we must compensate much error by applying bigger output/correction.
+Just to convince ourselves that it works:  if the error decreases fast, we must reduce the strength of our output (because fewer error to compensate). But if it increases fast, we must compensate much error by applying bigger output/correction.
 
 Note: in the video, he doesn't use any  Time value in his derivative / slope (considers the interval $\Delta t = 1$). This is why in the pseudo-code, we simply do `K/tau_d * (Error - LastError)` for the derivative part, we measured the slope on the interval between current and last measure.
 
